@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<robot name="day" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find day_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find day_description)/urdf/day.trans" />
+<xacro:include filename="$(find day_description)/urdf/day.gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.012356924644014744 0.023974125180550133 0.06527940089904383" rpy="0 0 0"/>
+    <mass value="1.8559945700042284"/>
+    <inertia ixx="0.002707" iyy="0.008434" izz="0.009109" ixy="2e-05" iyz="0.0" ixz="-0.000469"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://day_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://day_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_wheel_1">
+  <inertial>
+    <origin xyz="1.2941269397770405e-07 -0.004999869602362719 3.9881331084790084e-08" rpy="0 0 0"/>
+    <mass value="0.6165375582669967"/>
+    <inertia ixx="0.00039" iyy="0.000771" izz="0.00039" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.060043 0.030819 -0.05358" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://day_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.060043 0.030819 -0.05358" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://day_description/meshes/right_wheel_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Rev2" type="continuous">
+  <origin xyz="-0.060043 -0.030819 0.05358" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_wheel_1"/>
+  <axis xyz="0.0 -1.0 -0.0"/>
+</joint>
+
+</robot>
